@@ -1,0 +1,48 @@
+{
+  "name": "democraft-studio",
+  "version": "0.1.0",
+  "description": "Local-first product demo video studio for Windows",
+  "main": "src/main.cjs",
+  "author": "qianjiao626",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.cjs",
+    "check": "node --check src/main.cjs && node --check src/preload.cjs && node --check src/editor.js && node --check src/render.js",
+    "pack": "electron-builder --win zip --x64",
+    "pack:zip": "electron-builder --win zip --x64",
+    "test:integration": "node scripts/integration.cjs",
+    "test:smoke": "node scripts/smoke.cjs",
+    "test:matrix": "node scripts/matrix.cjs",
+    "format": "prettier --write \"src/**/*.{js,cjs,html,css}\" \"test/*.cjs\" \"scripts/*.cjs\""
+  },
+  "devDependencies": {
+    "electron": "^37.0.0",
+    "electron-builder": "^26.0.0",
+    "playwright": "^1.58.2",
+    "prettier": "^3.9.6"
+  },
+  "build": {
+    "appId": "io.github.qianjiao626.democraft",
+    "productName": "DemoCraft",
+    "files": [
+      "src/**/*",
+      "package.json",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md"
+    ],
+    "win": {
+      "target": "zip",
+      "signAndEditExecutable": false
+    },
+    "directories": {
+      "output": "release"
+    },
+    "extraResources": [
+      {
+        "from": "assets/orbit-demo.webm",
+        "to": "demo/orbit-demo.webm"
+      }
+    ]
+  }
+}

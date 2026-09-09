@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; media-src 'self' media: blob:; style-src 'self'; script-src 'self'; connect-src 'self' media:"
+    />
+    <title>DemoCraft · 演示工坊</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <b class="logo">D<span>↗</span></b>
+        <div>
+          <strong>DemoCraft</strong><small>演示工坊 / LOCAL VIDEO STUDIO</small>
+        </div>
+      </div>
+      <div class="project-name">
+        未命名演示 <span class="tag">本地创作</span>
+      </div>
+      <nav>
+        <button id="open">打开工程</button><button id="save">保存工程</button
+        ><button id="export" class="primary">导出 MP4 ↗</button>
+      </nav>
+    </header>
+    <main>
+      <aside class="library">
+        <div class="eyebrow">WORKSPACE</div>
+        <h2>你的下一场<br />精彩演示。</h2>
+        <p class="muted">从一次录屏，到一段值得分享的产品故事。</p>
+        <button id="import" class="wide primary">＋ 导入本地视频</button
+        ><button id="record" class="wide">● 录制屏幕 / 窗口</button
+        ><button id="demo" class="wide subtle">▷ 先体验内置示例</button>
+        <div class="divider"></div>
+        <div class="section-label">素材库 <span>01</span></div>
+        <div id="asset" class="asset">
+          <div class="asset-icon">▷</div>
+          <strong id="asset-name">等待你的第一个镜头</strong
+          ><small id="asset-meta"
+            >MP4 · WebM · MOV · MKV<br />实际兼容性取决于视频编码</small
+          >
+        </div>
+        <div class="local-note">
+          <span class="dot"></span>创作不必上传云端
+          <p>视频与工程保存在你的电脑。<br />无登录，无水印。</p>
+        </div>
+        <button id="recover" class="wide subtle">恢复上次自动保存</button>
+        <div id="environment" class="muted tiny">正在检查本地编码器…</div>
+      </aside>
+      <section class="workspace">
+        <div class="preview-toolbar">
+          <span><span class="dot"></span> LIVE PREVIEW</span>
+          <div>
+            <button id="undo" title="撤销 Ctrl+Z">↶ 撤销</button
+            ><button id="redo" title="重做 Ctrl+Shift+Z">↷ 重做</button
+            ><select id="ratio" data-bind="ratio">
+              <option>16:9</option>
+              <option>9:16</option>
+              <option>1:1</option>
+            </select>
+          </div>
+        </div>
+        <div class="stage">
+          <canvas id="preview" width="1920" height="1080"></canvas>
+          <div id="empty-hint">
+            导入视频或录屏，开始创作 <span>↑ 左侧选择素材</span>
+          </div>
+        </div>
+        <div class="playbar">
+          <span id="time">00:00.0 / 00:00.0</span
+          ><button id="play" class="play">▶</button
+          ><span id="resolution">1920 × 1080 · 30 FPS</span>
+        </div>
+        <section class="timeline">
+          <div class="section-label">
+            时间线 <span id="duration">0.0 秒成片</span>
+          </div>
+          <input id="seek" type="range" min="0" max="1" step="0.01" value="0" />
+          <div class="track">
+            <span>01 / VIDEO</span>
+            <div id="clip">导入后显示视频片段</div>
+          </div>
+          <div class="track camera-track">
+            <span>02 / CAMERA</span>
+            <div id="camera-label">开启聚焦，平滑放大重要细节</div>
+          </div>
+          <div class="trim-row">
+            <label
+              >入点
+              <input
+                id="trimStart"
+                data-bind="trimStart"
+                type="number"
+                min="0"
+                step="0.1"
+                value="0"
+              />
+              s</label
+            ><button id="in">设为当前入点</button
+            ><label
+              >出点
+              <input
+                id="trimEnd"
+                data-bind="trimEnd"
+                type="number"
+                min="0"
+                step="0.1"
+                value="0"
+              />
+              s</label
+            ><button id="out">设为当前出点</button>
+          </div>
+        </section>
+        <footer>
+          <span id="status">准备就绪 · 所有编辑在本地完成</span
+          ><span>SPACE 播放 / 暂停</span>
+        </footer>
+      </section>
+      <aside class="inspector">
+        <div class="inspector-heading">
+          <h3>画面设计</h3>
+          <span class="tag">STUDIO</span>
+        </div>
+        <details open>
+          <summary>画布与背景</summary>
+          <div class="palettes">
+            <button data-palette="aurora" class="swatch aurora" title="晨雾">
+              晨雾</button
+            ><button data-palette="ember" class="swatch ember" title="落日">
+              落日</button
+            ><button data-palette="mint" class="swatch mint" title="薄荷">
+              薄荷</button
+            ><button
+              data-palette="midnight"
+              class="swatch midnight"
+              title="夜幕"
+            >
+              夜幕
+            </button>
+          </div>
+          <label
+            >画面留白
+            <input
+              data-bind="padding"
+              type="range"
+              min="0.03"
+              max="0.2"
+              step="0.005" /></label
+          ><label
+            >圆角
+            <input data-bind="radius" type="range" min="0" max="50" /></label
+          ><label
+            >阴影 <input data-bind="shadow" type="range" min="0" max="70"
+          /></label>
+        </details>
+        <details open>
+          <summary>标题与字幕</summary>
+          <label
+            >主标题<input
+              data-bind="title"
+              type="text"
+              maxlength="140" /></label
+          ><label
+            >顶部标签<input
+              data-bind="subtitle"
+              type="text"
+              maxlength="140" /></label
+          ><label
+            >底部字幕<input
+              data-bind="caption"
+              type="text"
+              maxlength="240"
+              placeholder="输入一句说明，让观众跟上你的思路"
+          /></label>
+          <div class="two">
+            <label
+              >字幕开始 / s<input
+                data-bind="captionStart"
+                type="number"
+                min="0"
+                step="0.1" /></label
+            ><label
+              >字幕结束 / s<input
+                data-bind="captionEnd"
+                type="number"
+                min="0"
+                step="0.1"
+            /></label>
+          </div>
+        </details>
+        <details open>
+          <summary>
+            镜头聚焦 <input data-bind="zoom.enabled" type="checkbox" />
+          </summary>
+          <div class="two">
+            <label
+              >开始 / s<input
+                data-bind="zoom.start"
+                type="number"
+                min="0"
+                step="0.1" /></label
+            ><label
+              >结束 / s<input
+                data-bind="zoom.end"
+                type="number"
+                min="0"
+                step="0.1"
+            /></label>
+          </div>
+          <label
+            >放大倍数<input
+              data-bind="zoom.scale"
+              type="range"
+              min="1"
+              max="3"
+              step="0.05" /></label
+          ><label
+            >焦点 X<input
+              data-bind="zoom.x"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01" /></label
+          ><label
+            >焦点 Y<input
+              data-bind="zoom.y"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+          /></label>
+          <p class="tiny muted">时间以原始素材为准。平滑进入 / 退出。</p>
+        </details>
+        <details>
+          <summary>
+            隐私遮挡 <input data-bind="mask.enabled" type="checkbox" />
+          </summary>
+          <p class="tiny muted">
+            固定实色遮挡，跟随画面缩放；不自动跟踪。请逐帧检查敏感信息。
+          </p>
+          <label
+            >水平位置<input
+              data-bind="mask.x"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01" /></label
+          ><label
+            >垂直位置<input
+              data-bind="mask.y"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01" /></label
+          ><label
+            >宽度<input
+              data-bind="mask.w"
+              type="range"
+              min="0.01"
+              max="1"
+              step="0.01" /></label
+          ><label
+            >高度<input
+              data-bind="mask.h"
+              type="range"
+              min="0.01"
+              max="1"
+              step="0.01"
+          /></label>
+        </details>
+      </aside>
+    </main>
+    <video id="video" preload="auto" playsinline></video>
+    <dialog id="record-dialog">
+      <h2>选择要录制的画面</h2>
+      <p class="muted">最长 5 分钟。请关闭通知，避免录入密码和个人信息。</p>
+      <div id="sources"></div>
+      <div class="dialog-actions">
+        <label><input id="mic" type="checkbox" /> 麦克风</label
+        ><label
+          ><input id="system-audio" type="checkbox" />
+          系统音频（依系统支持）</label
+        ><button id="close-record">取消</button>
+      </div>
+    </dialog>
+    <dialog id="export-dialog">
+      <span class="eyebrow">RENDERING LOCALLY</span>
+      <h2 id="export-heading">正在制作你的演示</h2>
+      <p id="export-detail">逐帧渲染中，请勿关闭应用。</p>
+      <progress id="export-progress" max="100" value="0"></progress>
+      <div class="dialog-actions">
+        <button id="cancel-export">取消导出</button>
+      </div>
+    </dialog>
+    <script src="core.js"></script>
+    <script src="render.js"></script>
+    <script src="editor.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "title": "让你的产品，成为焦点。",
+  "subtitle": "PRODUCT WALKTHROUGH",
+  "palette": "ember",
+  "ratio": "16:9",
+  "padding": 0.085,
+  "radius": 18,
+  "shadow": 35,
+  "trimStart": 0,
+  "trimEnd": 6.508,
+  "zoom": {
+    "enabled": true,
+    "start": 1,
+    "end": 5,
+    "scale": 1.65,
+    "x": 0.5,
+    "y": 0.5
+  },
+  "caption": "一次录屏，就能做出清晰、精致的产品演示",
+  "captionStart": 0,
+  "captionEnd": 600,
+  "mask": {
+    "enabled": false,
+    "x": 0.68,
+    "y": 0.09,
+    "w": 0.24,
+    "h": 0.12
+  }
+}
