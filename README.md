@@ -8,6 +8,23 @@ Windows 本地优先的轻量演示视频工作台。录制窗口或导入素材
 
 ![DemoCraft 编辑界面](assets/screenshot.png)
 
+## 快速入口
+
+[下载 Windows 预览版](https://github.com/qianjiao626/democraft/releases/tag/v0.1.0) · [查看实际导出样片](https://github.com/qianjiao626/democraft/releases/download/v0.1.0/showcase.mp4) · [中文使用指南](docs/USER_GUIDE.md) · [常见问题](docs/FAQ.md)
+
+[数据与隐私](docs/PRIVACY.md) · [路线图（未实现项）](docs/ROADMAP.md) · [更新记录](CHANGELOG.md) · [实际验证记录](VERIFICATION.md)
+
+## 适合哪些场景
+
+| 使用者 | 想完成的事情 | 当前适合的做法 |
+| --- | --- | --- |
+| 独立开发者 | 展示一次核心操作 | 录一个窗口，裁掉等待时间，给关键按钮添加聚焦 |
+| 开源维护者 | 介绍版本更新 | 使用短标题和单条说明字幕，导出简短 MP4 |
+| 教程作者 | 讲解一个软件步骤 | 用原片时间设置聚焦和字幕，保留素材音轨 |
+| 求职者 / 设计师 | 展示交互作品 | 用统一背景、留白与圆角整理画面 |
+
+DemoCraft 不替代 OBS 的复杂直播录制能力，也不替代专业剪辑软件的多轨后期。它把单段素材的包装、重点强调与导出放进一个本地工作台；当前最适合先制作一个短而明确的演示。
+
 ## 可以做什么
 
 - **屏幕 / 窗口录制**：手动选择来源，支持可选麦克风和系统音频请求。
